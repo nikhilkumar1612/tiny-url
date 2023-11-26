@@ -2,7 +2,6 @@ const {MD5} = require("crypto-js");
 const joi = require("joi");
 const models = require("../models/index");
 const db = require("../utils/database");
-const {encode} = require("base62");
 const { encode62 } = require("../utils/encode");
 
 const create = async (req, res) => {
@@ -20,6 +19,20 @@ const create = async (req, res) => {
         }
 
         const originalUrl = value.url;
+
+        const row = await models.Url.findOne({
+            where: {
+                originalUrl
+            }
+        });
+
+        if(row) {
+            return res.status(400).json({
+                error: `Url already exists`,
+                hash: row.hash
+            });
+        }
+
         const hash = MD5(originalUrl).toString();
 
         const bigHash = BigInt(`0x${hash}`);
@@ -37,7 +50,9 @@ const create = async (req, res) => {
             tinyurl: `http://localhost:3000/${base62EncodedHash}`
         })
     } catch (error) {
-        throw error;
+        return res.status(500).json({
+            error: "Internal Server Error",
+        });
     }
 }
 
