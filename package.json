@@ -1,0 +1,31 @@
+{
+  "name": "tiny-url",
+  "version": "1.0.0",
+  "description": "Express app to create tiny url using hashing algorithms, using postgres to resolve tiny urls.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "yarn nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhilkumar1612/tiny-url.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhilkumar1612/tiny-url/issues"
+  },
+  "homepage": "https://github.com/nikhilkumar1612/tiny-url#readme",
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.11.0",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
